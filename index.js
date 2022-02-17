@@ -4,8 +4,8 @@ for( var i = 0; i < numberOfButtons; i++){
     document.querySelectorAll("button")[i].addEventListener("click", function (){
         buttonInnerHtml = (this.innerHTML)
         makeSound(buttonInnerHtml);
-
-        //what to do when click detected
+        buttonAnimation(buttonInnerHtml);
+        //detecting mouse press
         
     });
 
@@ -13,6 +13,8 @@ for( var i = 0; i < numberOfButtons; i++){
 
 document.addEventListener("keydown", function(event){
     makeSound(event.key);
+    buttonAnimation(event.key);
+    //detecting a keyboar press
 })
 
 
@@ -59,4 +61,14 @@ function makeSound(key){
     default:
         console.log("buttonInnerHtml");
 }
+}
+
+function buttonAnimation(currentKey){
+
+  var activeButton = document.querySelector("." + currentKey);
+      activeButton.classList.add("pressed");
+
+      setTimeout( function(){
+        activeButton.classList.remove("pressed")
+      },100);
 }
